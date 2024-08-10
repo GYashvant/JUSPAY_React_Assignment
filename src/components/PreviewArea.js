@@ -6,7 +6,7 @@ export default function PreviewArea({ actions, replayAction }) {
   const [color, setColor] = useState("#FFAB19");
   const [storeText, setStoreText] = useState('')
 
-  const handleSwitchCase = (action, newPosition) => {
+  const handleSwitchCase = (action, newPosition, newColor) => {
     let updatedAction = action
       .toLowerCase()
       .replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
@@ -35,9 +35,9 @@ export default function PreviewArea({ actions, replayAction }) {
     let newPosition = { ...position };
     let newColor = color;
     mode === "REPLAY"
-      ? handleSwitchCase(action, newPosition)
+      ? handleSwitchCase(action, newPosition, newColor)
       : actions?.forEach((action) => {
-          handleSwitchCase(action, newPosition);
+          handleSwitchCase(action, newPosition, newColor);
         });
     setPosition(newPosition);
     setColor(newColor);
